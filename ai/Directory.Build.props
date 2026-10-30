@@ -1,0 +1,7 @@
+<Project>
+  <!-- Keep intermediate build output out of the tool folder (only ai-bin\ ends up there). -->
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(TEMP)\bg-remove-ai-build\obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(TEMP)\bg-remove-ai-build\bin\</BaseOutputPath>
+  </PropertyGroup>
+</Project>

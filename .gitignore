@@ -1,0 +1,18 @@
+# Built by setup.cmd
+ai-bin/
+
+# Downloaded by setup.cmd / download-models.cmd (too large for git)
+models/*.onnx
+models/*.onnx.part
+models/*.cpu-only
+
+# Output written next to processed images
+*-nobg.png
+*-nobg-preview.png
+*-presets/
+
+# Build/editor leftovers
+bin/
+obj/
+.vs/
+*.user

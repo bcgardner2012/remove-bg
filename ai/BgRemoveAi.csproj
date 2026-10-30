@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- AI background removal: runs an ONNX segmentation model (rembg's models) with ONNX Runtime.
+       Built by setup.cmd, or: dotnet publish ai -c Release -o ai-bin   (from the repository folder) -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>BgRemoveAi</AssemblyName>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <!-- Run on .NET 8 or any newer runtime that's installed. -->
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- DirectML runs on any DirectX 12 GPU (NVIDIA/AMD/Intel) without CUDA; falls back to CPU. -->
+    <PackageReference Include="Microsoft.ML.OnnxRuntime.DirectML" Version="1.24.4" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.10" />
+  </ItemGroup>
+  <!-- DirectML's debug layer and symbols aren't needed to run (~14 MB). -->
+  <Target Name="TrimPublish" AfterTargets="Publish">
+    <Delete Files="$(PublishDir)DirectML.pdb;$(PublishDir)DirectML.Debug.dll;$(PublishDir)DirectML.Debug.pdb;$(PublishDir)onnxruntime.lib" />
+  </Target>
+</Project>
